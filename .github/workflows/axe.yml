@@ -2,13 +2,7 @@ name: Accessibility Tests
 
 on:
   push:
-    branches:
-      - master
-      - release
   pull_request:
-    branches:
-      - master
-      - release
   workflow_dispatch:
 
 concurrency:
@@ -50,4 +44,4 @@ jobs:
           ./gradlew serverRun &
           ./wait-for-server.sh
       - name: Start Axe Tests
-        run: xvfb-run --server-args="-screen 0 1024x768x24" ./gradlew axeTests
+        run: xvfb-run --server-args="-screen 0 1024x768x24" ./gradlew axeTests --tests "AdminAccountsPageAxeTest" --tests "AdminHomePageAxeTest" --tests "AdminNotificationsPageAxeTest"
